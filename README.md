@@ -2,14 +2,6 @@
 
 A small local application for developers to report blockers and project managers to track them. This repository is a technical assessment; see [ASSESSMENT.md](ASSESSMENT.md).
 
-## Architecture
-
-```text
-React Native / Expo  -- HTTP JSON / REST -->  FastAPI  -->  SQLModel ORM  -->  SQLite
-```
-
-The Expo app displays and submits blockers. FastAPI validates requests and implements the API; SQLModel maps Python objects to records in a local SQLite database. Data stays in `backend/blockers.db` between restarts.
-
 ## Prerequisites
 
 Install Python 3.10 or newer, Node.js 20.19.4 or newer (Node 22 LTS recommended), and npm. Install Expo Go on a physical device, or set up an Android emulator / iOS simulator. The computer and phone must be on the same network for LAN access.

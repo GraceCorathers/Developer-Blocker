@@ -38,6 +38,8 @@ def update_description(blocker_id: int, data: DescriptionUpdate, session: Sessio
     blocker = find_blocker(blocker_id, session)
     blocker.description = data.description
     session.add(blocker)
+    session.commit() #saves changes to SQLite
+    session.refresh(blocker) #reloads the record to get updated values from the database
     return blocker
 
 

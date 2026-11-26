@@ -17,9 +17,9 @@ async function request<T>(path: string, options?: RequestInit): Promise<T> {
   return response.json() as Promise<T>;
 }
 
+// edited async function fixes the empty blocker list by making the frontend read the array the backend returns instead of looking for an items property that doesnt exist
 export async function listBlockers(): Promise<Blocker[]> {
-  const response = await request<{ items?: Blocker[] }>('/blockers');
-  return response.items ?? [];
+  return request<Blocker[]>('/blockers');
 }
 
 export const getBlocker = (id: number) => request<Blocker>(`/blockers/${id}`);

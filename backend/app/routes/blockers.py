@@ -46,4 +46,9 @@ def update_description(blocker_id: int, data: DescriptionUpdate, session: Sessio
 @router.patch("/{blocker_id}", response_model=BlockerRead)
 def update_status(blocker_id: int, data: StatusUpdate, session: Session = Depends(get_session)):
     # Implement status updates as described in ASSESSMENT.md.
-    raise HTTPException(status_code=501, detail="Status updates are not implemented yet")
+    blocker = find_blocker(blocker_id, session)
+    blocker.status = data.status
+    session.add(blocker)
+    session.commit()
+    session.refresh(blocker)
+    return blocker
